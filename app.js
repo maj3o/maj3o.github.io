@@ -38,7 +38,6 @@ getLocation(map);
 
 data.features.forEach(feature => {
     if (feature.properties["Art der Sperrung"] == "Vollsperrung") {
-        console.log(feature);
         var latlng = new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
         var marker = new L.marker(latlng, {
             icon: red
@@ -46,13 +45,12 @@ data.features.forEach(feature => {
         createJamMarker(feature.geometry.coordinates[1], feature.geometry.coordinates[0], 100, map);
         marker.bindPopup("<b>Vollsperrung</b><br>Grund: " + feature.properties["Grund der Sperrung"]);
     } else if (feature.properties["Art der Sperrung"] == "Verkehrsraumeinschränkung") {
-        console.log(feature);
         var latlng = new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
         var marker = new L.marker(latlng, {
             icon: orange
         }).addTo(map);
         createWarnMarker(feature.geometry.coordinates[1], feature.geometry.coordinates[0], 100, map);
-        marker.bindPopup("<b>Verkehrsraumeinschränkung</b><br>Grund: " + feature.properties["Grund der Einschränkung"]);
+        marker.bindPopup("<b>Verkehrsraumeinschränkung</b><br>Grund: " + feature.properties["Grund der Sperrung"]);
     }
 });
 
